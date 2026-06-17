@@ -5,207 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="一个用于搜索、常用工具、今日待办和临时记录的个人轻首页。"
+      content="尘心的轻首页：搜索、常用入口、今日待办和临时记录。"
     />
-    <title>尘心的轻首页</title>
+    <title>尘心 · 轻首页</title>
     <link rel="icon" type="image/png" href="./assets/ico.png" />
     <link rel="apple-touch-icon" href="./assets/ico2.png" />
     <link rel="stylesheet" href="./styles.css" />
     <script src="./app.js" defer></script>
   </head>
-  <body>
-    <main class="shell" aria-label="尘心的个人轻首页">
+  <body data-variant="scheme2-refined">
+    <main class="shell" aria-label="尘心轻首页">
       <header class="topbar">
-        <section class="identity" aria-label="问候">
-          <div class="brand-row">
-            <img class="site-icon" src="./assets/ico2.png" alt="尘心的轻首页图标" />
-            <p class="terminal-mark">
-              <span aria-hidden="true">&gt;_</span>
-              <!-- <span>私人工作台</span> -->
+        <section class="identity" aria-labelledby="greeting">
+          <img class="avatar" src="./assets/ico2.png" alt="尘心头像" />
+          <div class="identity-copy">
+            <h1 id="greeting">晚上好，尘心</h1>
+            <p class="motto">
+              <span id="mottoText"></span>
+              <span class="cursor" aria-hidden="true"></span>
             </p>
           </div>
-          <h1 id="greeting">晚上好，尘心</h1>
-          <p class="motto-line" aria-label="今日箴言">
-            <!-- <span>箴言</span> -->
-            <q id="mottoText"></q>
-            <span class="typing-cursor" aria-hidden="true"></span>
-          </p>
         </section>
 
-        <section class="time-card" aria-label="当前时间和日期">
+        <section class="status-panel" aria-label="当前时间">
           <time id="clock" class="clock" datetime="">00:00</time>
-          <time id="date" class="date" datetime="">载入日期中...</time>
+          <time id="date" class="date" datetime="">正在载入日期</time>
+          <span class="online-state"><span class="status-dot"></span>ONLINE</span>
         </section>
       </header>
 
-      <section class="command-center" aria-label="搜索">
-        <div class="command-label">
-          <span>搜索入口</span>
-          <span>搜索 / 筛选 / 直达</span>
-        </div>
-        <form id="searchForm" class="search-panel" autocomplete="off">
+      <section class="command-area" aria-label="搜索与入口">
+        <form id="searchForm" class="command-shell" autocomplete="off">
+          <span class="prompt" aria-hidden="true">&gt;</span>
           <input
             id="searchInput"
-            name="q"
             type="search"
             autocomplete="off"
             spellcheck="false"
-            placeholder="搜索、筛选或输入网址"
-            aria-label="搜索内容"
+            placeholder="搜索、输入网址或直接打开常用入口"
+            aria-label="搜索、输入网址或打开常用入口"
           />
           <select id="engineSelect" aria-label="搜索引擎">
             <option value="bing">Bing</option>
             <option value="baidu">百度</option>
             <option value="google">Google</option>
             <option value="github">GitHub</option>
+            <option value="youtube">YouTube</option>
+            <option value="bilibili">Bilibili</option>
           </select>
-          <button type="submit">搜索</button>
+          <button type="submit" aria-label="执行" title="执行">↵</button>
         </form>
-
-        <div class="search-support">
-          <p>输入会实时筛选常用网站 · Enter 使用所选引擎搜索 · 输入网址可直接打开</p>
-        </div>
       </section>
 
-      <section class="site-section card" aria-label="常用网站">
-        <div class="card-heading">
-          <p>常用网站</p>
-          <span><span id="siteCount">0</span> / <span id="siteTotal">0</span> 个入口</span>
-        </div>
-
-        <div class="link-groups">
-          <section class="link-group">
-            <div class="section-header">
-              <h2>校园核心</h2>
-              <span class="section-count">8</span>
-            </div>
-            <div class="links">
-              <a class="link-item" href="https://www.cc98.org/" target="_blank" rel="noopener noreferrer" data-keywords="cc98 校园 论坛"><span class="link-mark">C</span><span class="link-text">CC98</span></a>
-              <a class="link-item" href="https://courses.zju.edu.cn/user/index" target="_blank" rel="noopener noreferrer" data-keywords="学在浙大 课程 教学"><span class="link-mark">学</span><span class="link-text">学在浙大</span></a>
-              <a class="link-item" href="http://zdbk.zju.edu.cn/" target="_blank" rel="noopener noreferrer" data-keywords="教务网 教务 选课 成绩"><span class="link-mark">教</span><span class="link-text">教务网</span></a>
-              <a class="link-item" href="https://webvpn.zju.edu.cn/" target="_blank" rel="noopener noreferrer" data-keywords="webvpn vpn 校外"><span class="link-mark">V</span><span class="link-text">WebVPN</span></a>
-              <a class="link-item" href="https://classroom.zju.edu.cn/" target="_blank" rel="noopener noreferrer" data-keywords="智云课堂 课堂 回放"><span class="link-mark">课</span><span class="link-text">智云课堂</span></a>
-              <a class="link-item" href="http://libweb.zju.edu.cn/" target="_blank" rel="noopener noreferrer" data-keywords="浙大图书馆 图书馆 借阅"><span class="link-mark">图</span><span class="link-text">浙大图书馆</span></a>
-              <a class="link-item" href="https://zjuem.zju.edu.cn/" target="_blank" rel="noopener noreferrer" data-keywords="浙大邮箱 邮箱 email"><span class="link-mark">@</span><span class="link-text">浙大邮箱</span></a>
-              <a class="link-item" href="https://charger.philfan.cn/" target="_blank" rel="noopener noreferrer" data-keywords="zjucharger 充电 charger 校园"><span class="link-mark">充</span><span class="link-text">ZJUCharger</span></a>
-            </div>
-          </section>
-
-          <section class="link-group">
-            <div class="section-header">
-              <h2>学习资料</h2>
-              <span class="section-count">7</span>
-            </div>
-            <div class="links">
-              <a class="link-item" href="https://www.cnki.net/" target="_blank" rel="noopener noreferrer" data-keywords="中国知网 知网 论文"><span class="link-mark">知</span><span class="link-text">中国知网</span></a>
-              <a class="link-item" href="https://isshikihugh.github.io/zju-cs-asio/" target="_blank" rel="noopener noreferrer" data-keywords="cs-all zju cs 课程"><span class="link-mark">CS</span><span class="link-text">CS-ALL</span></a>
-              <a class="link-item" href="https://csdiy.wiki/" target="_blank" rel="noopener noreferrer" data-keywords="csdiy 计算机 自学"><span class="link-mark">DY</span><span class="link-text">CSDIY</span></a>
-              <a class="link-item" href="https://www.hello-algo.com/" target="_blank" rel="noopener noreferrer" data-keywords="hello 算法 数据结构"><span class="link-mark">算</span><span class="link-text">Hello 算法</span></a>
-              <a class="link-item" href="http://zh.d2l.ai/" target="_blank" rel="noopener noreferrer" data-keywords="深度学习 d2l ai"><span class="link-mark">DL</span><span class="link-text">深度学习</span></a>
-              <a class="link-item" href="https://developer.mozilla.org/zh-CN/docs/Learn" target="_blank" rel="noopener noreferrer" data-keywords="mdn web 前端 文档"><span class="link-mark">MD</span><span class="link-text">MDN Web</span></a>
-              <a class="link-item" href="https://zjusuee.github.io/" target="_blank" rel="noopener noreferrer" data-keywords="源梦紫金 学习 资料 zju"><span class="link-mark">源</span><span class="link-text">源梦紫金</span></a>
-            </div>
-          </section>
-
-          <section class="link-group">
-            <div class="section-header">
-              <h2>写作与文档</h2>
-              <span class="section-count">8</span>
-            </div>
-            <div class="links">
-              <a class="link-item" href="https://www.overleaf.com/" target="_blank" rel="noopener noreferrer" data-keywords="overleaf latex 论文"><span class="link-mark">Te</span><span class="link-text">Overleaf</span></a>
-              <a class="link-item" href="https://simpletex.cn/ai/latex_ocr" target="_blank" rel="noopener noreferrer" data-keywords="simpletex latex 公式识别"><span class="link-mark">Σ</span><span class="link-text">SimpleTex</span></a>
-              <a class="link-item" href="https://www.latexlive.com/" target="_blank" rel="noopener noreferrer" data-keywords="latex 在线公式 编辑"><span class="link-mark">fx</span><span class="link-text">在线公式编辑</span></a>
-              <a class="link-item" href="https://www.wjx.cn/" target="_blank" rel="noopener noreferrer" data-keywords="问卷星 问卷 调研"><span class="link-mark">卷</span><span class="link-text">问卷星</span></a>
-              <a class="link-item" href="https://xiumi.us/" target="_blank" rel="noopener noreferrer" data-keywords="秀米 排版 公众号 写作"><span class="link-mark">秀</span><span class="link-text">秀米</span></a>
-              <a class="link-item" href="https://mp.weixin.qq.com/" target="_blank" rel="noopener noreferrer" data-keywords="微信公众平台 公众号 写作 发布"><span class="link-mark">微</span><span class="link-text">微信公众平台</span></a>
-              <a class="link-item" href="https://tool.browser.qq.com/" target="_blank" rel="noopener noreferrer" data-keywords="在线工具箱 工具"><span class="link-mark">工</span><span class="link-text">在线工具箱</span></a>
-              <a class="link-item" href="https://fanyi.youdao.com/#/AITranslate?keyfrom=fanyiweb_tab" target="_blank" rel="noopener noreferrer" data-keywords="有道翻译 翻译 词典"><span class="link-mark">译</span><span class="link-text">有道翻译</span></a>
-            </div>
-          </section>
-
-          <section class="link-group">
-            <div class="section-header">
-              <h2>开发与工具</h2>
-              <span class="section-count">5</span>
-            </div>
-            <div class="links">
-              <a class="link-item" href="https://chat.openai.com/" target="_blank" rel="noopener noreferrer" data-keywords="chatgpt openai ai"><span class="link-mark">G</span><span class="link-text">ChatGPT</span></a>
-              <a class="link-item" href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer" data-keywords="deepseek ai"><span class="link-mark">D</span><span class="link-text">DeepSeek</span></a>
-              <a class="link-item" href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" data-keywords="gemini google ai"><span class="link-mark">Ge</span><span class="link-text">Gemini</span></a>
-              <a class="link-item" href="https://www.doubao.com/" target="_blank" rel="noopener noreferrer" data-keywords="豆包 ai"><span class="link-mark">豆</span><span class="link-text">豆包</span></a>
-              <a class="link-item" href="https://github.com/" target="_blank" rel="noopener noreferrer" data-keywords="github git 代码 开发"><span class="link-mark">GH</span><span class="link-text">GitHub</span></a>
-            </div>
-          </section>
-
-          <section class="link-group">
-            <div class="section-header">
-              <h2>娱乐</h2>
-              <span class="section-count">6</span>
-            </div>
-            <div class="links">
-              <a class="link-item" href="https://www.bilibili.com/" target="_blank" rel="noopener noreferrer" data-keywords="bilibili b站 视频"><span class="link-mark">B</span><span class="link-text">Bilibili</span></a>
-              <a class="link-item" href="https://www.douyin.com/" target="_blank" rel="noopener noreferrer" data-keywords="抖音 douyin 视频"><span class="link-mark">抖</span><span class="link-text">抖音</span></a>
-              <a class="link-item" href="https://www.xiaohongshu.com/" target="_blank" rel="noopener noreferrer" data-keywords="小红书 xiaohongshu 社区"><span class="link-mark">红</span><span class="link-text">小红书</span></a>
-              <a class="link-item" href="https://x.com/" target="_blank" rel="noopener noreferrer" data-keywords="x twitter 社交"><span class="link-mark">X</span><span class="link-text">X</span></a>
-              <a class="link-item" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" data-keywords="youtube 视频"><span class="link-mark">YT</span><span class="link-text">YouTube</span></a>
-              <a class="link-item" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" data-keywords="facebook 社交"><span class="link-mark">F</span><span class="link-text">Facebook</span></a>
-            </div>
-          </section>
-
-          <section class="link-group">
-            <div class="section-header">
-              <h2>个人常用</h2>
-              <span class="section-count">3</span>
-            </div>
-            <div class="links">
-              <a class="link-item" href="https://xinchen-sea.top/" target="_blank" rel="noopener noreferrer" data-keywords="个人主页 homepage"><span class="link-mark">S</span><span class="link-text">个人主页</span></a>
-              <a class="link-item" href="https://blog.xinchen-sea.top/" target="_blank" rel="noopener noreferrer" data-keywords="blog 博客"><span class="link-mark">B</span><span class="link-text">BLOG</span></a>
-              <a class="link-item" href="https://note.xinchen-sea.top/" target="_blank" rel="noopener noreferrer" data-keywords="notebook note 笔记"><span class="link-mark">N</span><span class="link-text">NoteBook</span></a>
-            </div>
-          </section>
-        </div>
-        <div class="empty-state" id="emptyState">没有匹配入口</div>
-      </section>
-
-      <section class="work-section" aria-label="今日待办和临时记录">
+      <section class="workspace-grid" aria-label="今日工作台">
         <article class="card tasks-card">
           <div class="card-heading">
-            <p>今日待办</p>
-            <span id="taskProgress">0/0 完成</span>
+            <div>
+              <span class="card-kicker"># today</span>
+              <h2>今日待办</h2>
+            </div>
+            <span id="taskProgress">0/0 已完成</span>
           </div>
-
-          <ul id="taskList" class="task-list" aria-label="今日待办列表"></ul>
-
-          <form id="taskForm" class="task-form">
+          <ul id="taskList" class="task-list"></ul>
+          <form id="taskForm" class="task-form" autocomplete="off">
             <input
               id="taskInput"
               type="text"
               maxlength="72"
-              placeholder="添加一个今天的小目标..."
+              placeholder="添加今天的一个小目标"
               aria-label="添加待办"
             />
-            <button type="submit" aria-label="添加待办">+</button>
+            <button type="submit" aria-label="添加待办" title="添加">+</button>
           </form>
         </article>
 
         <article class="card note-card">
           <div class="card-heading">
-            <p>临时记录</p>
+            <div>
+              <span class="card-kicker">~/quick-note</span>
+              <h2>临时记录</h2>
+            </div>
             <span id="noteStatus">已自动保存</span>
           </div>
           <textarea
             id="quickNote"
             spellcheck="false"
-            placeholder="先记下来，之后再整理。"
+            placeholder="先把想法放在这里。"
             aria-label="临时记录"
           ></textarea>
           <div class="note-actions">
-            <span id="noteMeta">0 字</span>
-            <button id="copyNote" type="button">复制</button>
-            <button id="clearNote" type="button">清空</button>
+            <span id="noteMeta">0 字 · local only</span>
+            <button id="copyNote" type="button" aria-label="复制记录" title="复制">复制</button>
+            <button id="clearNote" type="button" aria-label="清空记录" title="清空">清空</button>
           </div>
         </article>
+      </section>
+
+      <section class="card site-section" aria-labelledby="siteTitle">
+        <div class="card-heading">
+          <div>
+            <span class="card-kicker">~/frequent</span>
+            <h2 id="siteTitle">常用网站</h2>
+          </div>
+          <span><span id="siteCount">0</span> / <span id="siteTotal">0</span> entries</span>
+        </div>
+        <div id="linkTabs" class="link-tabs" role="tablist" aria-label="常用网站分组"></div>
+        <div id="linkGrid" class="link-groups"></div>
+        <p id="emptyState" class="empty-state" hidden>没有匹配入口</p>
       </section>
     </main>
   </body>
