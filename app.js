@@ -125,9 +125,9 @@ const LINK_GROUPS = [
     title: "个人相关",
     code: "PERSONAL",
     items: [
-      ["S", "个人主页", "https://xinchen-sea.top/", "homepage"],
+      ["H", "个人主页", "https://xinchen-sea.top/", "homepage"],
       ["B", "BLOG", "https://blog.xinchen-sea.top/", "blog 博客"],
-      ["N", "NoteBook", "https://note.xinchen-sea.top/", "notebook note 笔记"],
+      ["S", "ZJU-Summary", "https://zjusmry.xinchen-sea.top/", "summary 总结"],
     ],
   },
 ];
