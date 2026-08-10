@@ -99,7 +99,7 @@ const LINK_GROUPS = [
     ],
   },
   {
-    title: "开发工具",
+    title: "实用工具",
     code: "DEV",
     items: [
       ["G", "ChatGPT", "https://chat.openai.com/", "openai ai"],
@@ -107,6 +107,7 @@ const LINK_GROUPS = [
       ["Ge", "Gemini", "https://gemini.google.com/", "google ai"],
       ["豆", "豆包", "https://www.doubao.com/", "ai"],
       ["GH", "GitHub", "https://github.com/", "git 代码 开发"],
+      ["LaTeX", "LaTeXLive", "https://www.latexlive.com/", "latex 公式 编辑"],
     ],
   },
   {
