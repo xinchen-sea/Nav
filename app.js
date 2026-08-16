@@ -108,8 +108,8 @@ const LINK_GROUPS = [
       ["豆", "豆包", "https://www.doubao.com/", "ai"],
       ["GH", "GitHub", "https://github.com/", "git 代码 开发"],
       ["LaTeX", "LaTeXLive", "https://www.latexlive.com/", "latex 公式 编辑"],
-      ["C","Canva","https://www.canva.com/","设计 图形"],
-      ["C","Canva_cn","https://www.canva.cn/","设计 图形"],
+      ["C", "Canva", "https://www.canva.com/", "设计 图形"],
+      ["C", "Canva_cn", "https://www.canva.cn/", "设计 图形"],
     ],
   },
   {
